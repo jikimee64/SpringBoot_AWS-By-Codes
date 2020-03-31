@@ -39,7 +39,7 @@ public class HelloControllerTest {
                 .andExpect(status().isOk()) //mvc.perform의 결과를 검증한다, HTTP Header의 Status를 검증,
                 // 우리가 흔히 알고 있는 200,404,500 등의 상태를 검증, 여기선 OK 즉, 200인지 아닌지를 검증
                 .andExpect(content().string(hello)); //mvc.perform의 결과를 검증, 응답 본문의 내용을 검증,
-        // Controller에서 "hello"를 리턴하기 때문에 이 값이 맞는지 검증
+        // Controller에서 "hello"를 리턴하기 때문에 이 값이 맞는지 검증.........ㅣ..ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣ.,
     }
 
     @Test
