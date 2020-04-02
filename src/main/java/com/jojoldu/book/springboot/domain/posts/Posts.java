@@ -1,5 +1,6 @@
 package com.jojoldu.book.springboot.domain.posts;
 
+import com.jojoldu.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,7 @@ import javax.persistence.*;
 //테이블과 링크될 클래스임을 나타냄
 //기본값으로 클래스의 카멜케이스 이름을 언더스코어 네이밍(_)으로 테이블 이ㅣ름을 매칭한다.
 //ex) SalesManager.java -> sales_manager table
-public class Posts { //실제 DB의 테이블과 매칭될 클래스이며 보통 Entity클래스라고도 한다.
+public class Posts extends BaseTimeEntity { //실제 DB의 테이블과 매칭될 클래스이며 보통 Entity클래스라고도 한다.
     //JPA를 사용하면 DB 데이터에 작업할 경우 실제 쿼리를 날리기보다는, 이 Entity 클래스의 수정을 통해 작업한다.
     @Id
     //해당 테이블의 PK를 나타냄
