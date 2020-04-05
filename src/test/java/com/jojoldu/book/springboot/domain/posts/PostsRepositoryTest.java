@@ -9,8 +9,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import static org.assertj.core.api.Assertions.assertThat;
 
+import static org.assertj.core.api.Assertions.assertThat;
 /*
 별다른 설정 없이 @SpringBootTest를 사용할 경우 H2 데이터베이스를 자동으로 실행해줌
 이 테스트 역시 실행할 경우 H2가 자동으로 실행된다.
@@ -40,11 +40,11 @@ public class PostsRepositoryTest {
 
         postsRepository.save(Posts.builder() //테이블 posts에 insert/update 쿼리를 실행한다
                                             //id값이 있다면 update가, 없다면 insert 쿼리가 실행된다.
+
                 .title(title)
                 .content(content)
                 .author("jojoldu@gmail.com")
                 .build());
-
 
         //when
         List<Posts> postsList = postsRepository.findAll(); //테이블 posts에 있는 모든 데이터를 조회해오는 메소드드
@@ -56,23 +56,23 @@ public class PostsRepositoryTest {
     }
 
     @Test
-    public void BaseTimeEntity_등록(){
+    public void BaseTimeEntity_등록() {
         //given
-        LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);
+        LocalDateTime now = LocalDateTime.of(2019, 6, 4, 0, 0, 0);
         postsRepository.save(Posts.builder()
-                        .title("title")
-                        .content("content")
-                        .author("author")
-                        .build());
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
         //when
         List<Posts> postsList = postsRepository.findAll();
 
         //then
         Posts posts = postsList.get(0);
 
-        System.out.println(">>>>>> createDate="+posts.getCreatedDate()+", modifiedDate="+posts.getModifiedDate());
+        System.out.println(">>>>>>>>> createDate=" + posts.getCreatedDate() + ", modifiedDate=" + posts.getModifiedDate());
+
         assertThat(posts.getCreatedDate()).isAfter(now);
         assertThat(posts.getModifiedDate()).isAfter(now);
-
     }
 }

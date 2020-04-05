@@ -4,7 +4,12 @@ import com.jojoldu.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /*
 특이점 : setter 메소드가 없다.
@@ -14,6 +19,7 @@ import javax.persistence.*;
 명확히 그 목적과 의도를 나타낼 수 있는 메소드를 추가해야만 한다.
 책 93page
  */
+
 
 @Getter
 @NoArgsConstructor
