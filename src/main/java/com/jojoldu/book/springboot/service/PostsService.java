@@ -2,6 +2,7 @@ package com.jojoldu.book.springboot.service;
 
 import com.jojoldu.book.springboot.domain.posts.Posts;
 import com.jojoldu.book.springboot.domain.posts.PostsRepository;
+import com.jojoldu.book.springboot.web.dto.PostsListResponseDto;
 import com.jojoldu.book.springboot.web.dto.PostsResponseDto;
 import com.jojoldu.book.springboot.web.dto.PostsSaveRequestDto;
 import com.jojoldu.book.springboot.web.dto.PostsUpdateRequestDto;
@@ -42,6 +43,9 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
         postsRepository.delete(posts);
+        /* JpaRepository에서 이미 delete 메소드를 지원하고 있으니 이를 활용
+        엔티티를 파라미터로 삭제할 수도 있고, deleteById 메소드를 이용하면 id로 삭제할 수도 있다.
+        존재하는 Posts인지 확인을 위해 엔티티 조회 후 그대로 삭제 */
     }
 
     @Transactional(readOnly = true)
@@ -50,6 +54,14 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id=" + id));
 
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional(readOnly = true) //조회 기능만 남겨두어 조회 속도 개선
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new) //.map(posts -> new PostsListResponseDto(posts))
+                //postsRepository 결과로 넘어온 Posts의 Stream을 map을 통해 PostsListResponseDto 변환
+                .collect(Collectors.toList()); //-> List로 반환
     }
 
 }
