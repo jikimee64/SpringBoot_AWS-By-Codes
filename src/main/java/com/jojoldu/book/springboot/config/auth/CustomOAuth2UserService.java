@@ -45,8 +45,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         이후 네이버 로그인과 구글 로그인을 동시 지원할 때 사용
          */
 
-        OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName,
-                oAuth2User.getAttributes());
+        OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
         /*
         OAuthAttributes : OAuth2UserService를 통해 가져온 OAuth2User의 attribute를 담을 클래스
         이후 네이버 등 다른 소셜 로그인도 이 클래스를 사용
